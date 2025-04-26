@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Scanner</title>
+    <title>Voucher QR Code Scanner</title>
     <script src="html5-qrcode.min.js"></script>
     <style>
         body {
@@ -40,11 +40,10 @@
     <h1>QR Code Scanner</h1>
     <div id="qr-reader"></div>
     <div id="output">
-        <p><strong>Username:</strong> <span id="username"></span></p>
-        <p><strong>Password:</strong> <span id="password"></span></p>
+        <p><strong>Username:</strong> <span id="username"></span>
+        <strong>Password:</strong> <span id="password"></span></p>
     </div>
-    <button id="login-button">Log In</button>
-
+   
     <script>
         const usernameElement = document.getElementById("username");
         const passwordElement = document.getElementById("password");
@@ -62,12 +61,8 @@
                 passwordElement.textContent = password;
 
                 // Enable and configure login button
-                loginButton.style.display = "inline-block";
-                loginButton.disabled = false;
-                loginButton.onclick = () => {
-                    const loginUrl = `http://10.0.0.1/login?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
-                    window.location.href = loginUrl; // Redirect to MikroTik login
-                };
+                const loginUrl = `http://10.0.0.1/login?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+                window.location.href = loginUrl; // Redirect to MikroTik login
             } catch (e) {
                 alert("Invalid QR Code format! Please scan a valid QR code.");
             }
