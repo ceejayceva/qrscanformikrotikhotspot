@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher QR Code Scanner</title>
+    <script src="html5-qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #qr-reader {
+            width: 300px;
+            margin: 0 auto;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        #login-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #login-button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>QR Code Scanner</h1>
+    <div id="qr-reader"></div>
+    <div id="output">
+        <p><strong>Code:</strong> <span id="username"></span></p>
+    </div>
+   
+    <script>
+        const usernameElement = document.getElementById("username");
+
+        function onScanSuccess(decodedText) {
+            try {
+                // Assuming QR Code contains JSON, e.g., {"username": "user123", "password": "pass123"}
+   
+                const username = decodedText;
+        
+                // Display extracted credentials
+                usernameElement.textContent = username;
+     
+
+                // Enable and configure login button
+                const loginUrl = `http://10.0.0.1/login?username=${encodeURIComponent(username)}&password=${encodeURIComponent(username)}`;
+                window.location.href = loginUrl; // Redirect to MikroTik login
+            } catch (e) {
+                alert("Invalid QR Code format! Please scan a valid QR code.");
+            }
+        }
+
+        function onScanFailure(error) {
+            console.warn(`QR Code scanning error: ${error}`);
+        }
+
+        // Initialize the QR Code reader
+        const html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {
+            fps: 10,   // Frames per second
+            qrbox: 250 // Scanning box size
+        });
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    </script>
+</body>
+</html>
