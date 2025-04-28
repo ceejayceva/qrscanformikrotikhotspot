@@ -58,7 +58,7 @@
 
 
             // Set the login URL
-            const loginUrl = `http://10.0.0.1/login?username=${encodeURIComponent(decodedText)}&password=${encodeURIComponent(decodedText)}`;
+            const loginUrl = `http://10.0.0.1/login?username=${encodeURIComponent(username)}&password=`;
             window.location.href = loginUrl; // Redirect to MikroTik login
         } catch (e) {
             alert("Invalid QR Code format! Please scan a valid QR code.");
