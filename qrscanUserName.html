@@ -41,12 +41,12 @@
     <div id="qr-reader"></div>
 <div id="output">
     <p><strong>Code:</strong> <span id="username"></span></p>
-    <button id="login-button" disabled>Login</button>
+ 
 </div>
 
 <script>
     const usernameElement = document.getElementById("username");
-    const loginButton = document.getElementById("login-button");
+
 
     function onScanSuccess(decodedText) {
         try {
@@ -56,14 +56,10 @@
             // Display extracted credentials
             usernameElement.textContent = username;
 
-            // Enable the login button
-            loginButton.disabled = false;
 
             // Set the login URL
-            const loginUrl = `http://10.0.0.1/login?username=${encodeURIComponent(username)}&password=${encodeURIComponent(username)}`;
-            loginButton.onclick = () => {
-                window.location.href = loginUrl; // Redirect to MikroTik login
-            };
+            const loginUrl = `http://10.0.0.1/login?username=${encodeURIComponent(decodedText)}&password=${encodeURIComponent(decodedText)}`;
+            window.location.href = loginUrl; // Redirect to MikroTik login
         } catch (e) {
             alert("Invalid QR Code format! Please scan a valid QR code.");
         }
