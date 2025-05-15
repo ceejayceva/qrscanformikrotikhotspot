@@ -46,8 +46,8 @@
                 // Display scanned code
                 usernameElement.textContent = decodedText;
 
-                // Save the QR code value to localStorage
-                localStorage.setItem("qrCodeValue", decodedText);
+                // Save the QR code value to sessionStorage
+                sessionStorage.setItem("qrCodeValue", decodedText);
 
                 // Redirect to the second page
                 setTimeout(() => {
