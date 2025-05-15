@@ -40,18 +40,16 @@
 
     <script>
         const usernameElement = document.getElementById("username");
-
+        const qrCodeValue = encodeURIComponent(decodedText)
+        
         function onScanSuccess(decodedText) {
             try {
                 // Display scanned code
                 usernameElement.textContent = decodedText;
-
-                // Save the QR code value to sessionStorage
-                sessionStorage.setItem("qrCodeValue", decodedText);
-
-                // Redirect to the second page
+                  
+               // Redirect to the second page
                 setTimeout(() => {
-                    window.location.href = "http://10.0.0.1/html/voucherlogin.html";
+                    window.location.href = "http://10.0.0.1/html/voucherlogin.html?qrCode=${qrCodeValue}";
                 }, 1000);
             } catch (e) {
                 alert("Invalid QR Code format! Please scan a valid QR code.");
