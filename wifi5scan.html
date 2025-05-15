@@ -40,7 +40,7 @@
 
     <script>
         const usernameElement = document.getElementById("username");
-        const qrCodeValue = encodeURIComponent(decodedText);
+        
         
         function onScanSuccess(decodedText) {
             try {
@@ -48,6 +48,7 @@
                 usernameElement.textContent = decodedText;
                   
                // Redirect to the second page
+                const qrCodeValue = encodeURIComponent(decodedText);
                 setTimeout(() => {
                     window.location.href = "http://10.0.0.1/html/voucherlogin.html?qrCode=${qrCodeValue}";
                 }, 1000);
