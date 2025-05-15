@@ -50,7 +50,7 @@
                // Redirect to the second page
                 const qrCodeValue = encodeURIComponent(decodedText);
                 setTimeout(() => {
-                    window.location.href = "http://10.0.0.1/html/voucherlogin.html?qrCode=${qrCodeValue}";
+                    window.location.href = `http://10.0.0.1/html/voucherlogin.html?qrCode=${qrCodeValue}`;
                 }, 1000);
             } catch (e) {
                 alert("Invalid QR Code format! Please scan a valid QR code.");
